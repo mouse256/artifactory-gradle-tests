@@ -1,5 +1,8 @@
 
 allprojects {
+    group "org.example"
+    version "1.0.0-SNAPSHOT"
+
     project.repositories {
        maven {
             url System.properties["artifactoryRepo"]
