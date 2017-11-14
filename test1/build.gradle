@@ -1,0 +1,11 @@
+
+allprojects {
+    project.repositories {
+       maven {
+            url System.properties["artifactoryRepo"]
+        }
+    }
+}
+
+apply plugin: "base"
+
