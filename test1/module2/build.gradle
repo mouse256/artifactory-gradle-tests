@@ -1,9 +1,31 @@
 
 apply plugin: "java"
-apply plugin: "maven"
 apply plugin: "application"
 
 mainClassName = "org.example.module2.Module2"
+
+apply plugin: 'maven-publish'
+
+project.task([type: Jar], "sourceJar") {
+    classifier "sources"
+    from project.sourceSets.main.allJava
+}
+
+project.publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from project.components.java
+
+            artifact(project.tasks["sourceJar"]) {
+                classifier "sources"
+            }
+        }
+    }
+}
+
+project.plugins.withId("com.jfrog.artifactory", {
+    project.tasks["artifactoryPublish"].publications(project.publishing.publications.mavenJava)
+})
 
 dependencies {
     runtime 'org.slf4j:slf4j-simple:1.7+'
