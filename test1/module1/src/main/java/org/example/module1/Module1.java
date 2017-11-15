@@ -1,4 +1,4 @@
-package org.example.module2;
+package org.example.module1;
 
 import org.joda.time.Instant;
 import org.slf4j.Logger;
