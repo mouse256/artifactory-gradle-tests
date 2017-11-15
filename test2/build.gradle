@@ -1,0 +1,17 @@
+
+allprojects {
+    group "org.example"
+    version "1.0.0-SNAPSHOT"
+
+    if (System.getenv("JENKINS_URL") == null) {
+        //not running on jenkins
+        project.repositories {
+            maven {
+                url System.properties["artifactoryRepo"]
+            }
+        }
+    }
+}
+
+apply plugin: "base"
+

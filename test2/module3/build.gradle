@@ -1,0 +1,17 @@
+
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "application"
+
+mainClassName = "org.example.module3.Module3"
+
+task zipSomething(type: Zip) {
+    from 'src'
+    baseName "anothername "
+}
+tasks.assemble.dependsOn(zipSomething)
+
+dependencies {
+    runtime 'org.slf4j:slf4j-simple:1.7+'
+    compile 'org.slf4j:slf4j-api:1.7+'
+}
